@@ -1,0 +1,80 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+void menu() {
+    cout << "[1] - Dodawanie" << endl;
+    cout << "[2] - Dzielenie całkowite" << endl;
+    cout << "[3] - Przeliczanie liczby dziesiętnej na system trójkowy" << endl;
+    cout << "[4] - Przeliczanie liczby dziesiętnej na system czwórkowy" << endl;
+    cout << "[5] - Przeliczanie liczby dziesiętnej na system piątkowy" << endl;
+    cout << "[0] - Wyjście z programu" << endl;
+}
+
+void dodawanie() {
+    double liczba1, liczba2;
+    cout << "Podaj dwie liczby: ";
+    cin >> liczba1 >> liczba2;
+    cout << "Wynik: " << liczba1 + liczba2 << endl;
+}
+
+void dzielenie() {
+    int liczba1, liczba2;
+    cout << "Podaj dwie liczby: ";
+    cin >> liczba1 >> liczba2;
+    if (liczba2 != 0) {
+        cout << "Wynik: " << liczba1 / liczba2 << endl;
+    } else {
+        cout << "Nie można dzielić przez zero!" << endl;
+    }
+}
+
+void dziesietnaNaSystem(int liczba, int podstawa) {
+    string wynik = "";
+    while (liczba > 0) {
+        wynik = to_string(liczba % podstawa) + wynik;
+        liczba /= podstawa;
+    }
+    cout << "Wynik: " << wynik << endl;
+}
+
+int main() {
+    int wybor;
+    do {
+        menu();
+        cin >> wybor;
+        switch (wybor) {
+            case 1:
+                dodawanie();
+                break;
+            case 2:
+                dzielenie();
+                break;
+            case 3: {
+                int liczba;
+                cout << "Podaj liczbę dziesiętną: ";
+                cin >> liczba;
+                break;
+            }
+            case 4: {
+                int liczba;
+                cout << "Podaj liczbę dziesiętną: ";
+                cin >> liczba;
+                dziesietnaNaSystem(liczba, 4);
+                break;
+            }
+            case 5: {
+                int liczba;
+                cout << "Podaj liczbę dziesiętną: ";
+                cin >> liczba;
+                dziesietnaNaSystem(liczba, 5);
+                break;
+            }
+            default:
+                break;
+        }
+    } while (wybor != 0);
+
+    return 0;
+}
