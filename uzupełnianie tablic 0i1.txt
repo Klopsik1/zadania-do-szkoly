@@ -1,0 +1,47 @@
+#include <iostream>
+
+using namespace std;
+
+void wypelnijTablice(int wiersze, int kolumny, int znakPoczatkowy) {
+    int tablica[wiersze][kolumny];
+
+    for (int i = 0; i < wiersze; i++) {
+        for (int j = 0; j < kolumny; j++) {
+            
+            if (znakPoczatkowy == 0) {
+                tablica[i][j] = (i + j) % 2;
+            } else {
+                tablica[i][j] = (i + j + 1) % 2;
+            }
+        }
+    }
+
+    
+    for (int i = 0; i < wiersze; i++) {
+        for (int j = 0; j < kolumny; j++) {
+            cout << tablica[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+int main() {
+    int wiersze, kolumny, znakPoczatkowy;
+
+    cout << "Podaj liczbę wierszy: ";
+    cin >> wiersze;
+    cout << "Podaj liczbę kolumn: ";
+    cin >> kolumny;
+    cout << "Podaj znak początkowy (0 lub 1): ";
+    cin >> znakPoczatkowy;
+
+    // Sprawdzenie poprawności znaku początkowego
+    if (znakPoczatkowy != 0 && znakPoczatkowy != 1) {
+        cout << "Niepoprawny znak początkowy. Użyję domyślnego znaku 0." << endl;
+        znakPoczatkowy = 0;
+    }
+
+    wypelnijTablice(wiersze, kolumny, znakPoczatkowy);
+
+    return 0;
+}
